@@ -62,8 +62,8 @@ export function AddFeedDialog({
         throw new Error("Not authenticated");
       }
 
-      const user = await upsertUserFromClerk(userId);
-      const result = await validateAndAddFeed(user.id, newFeedUrl.trim());
+      const user = await upsertUserFromClerk(userId); //
+      const result = await validateAndAddFeed(user.id, newFeedUrl.trim()); // our server actions
 
       if (result.error) {
         toast.warning(`Feed added but: ${result.error}`);
