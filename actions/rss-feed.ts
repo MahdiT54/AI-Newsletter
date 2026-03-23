@@ -45,30 +45,43 @@ export async function updateFeedLastFetched(feedId: string) {
  */
 export async function deleteRssFeed(feedId: string) {
   return wrapDatabaseOperation(async () => {
-    // MongoDB-specific: Remove feedId from sourceFeedIds arrays
-    await prisma.$runCommandRaw({
-      update: "RssArticle",
-      updates: [
-        {
-          q: { sourceFeedIds: feedId },
-          u: { $pull: { sourceFeedIds: feedId } },
-          multi: true,
+    await prisma.$transaction(async (tx) => {
+      const relatedArticles = await tx.rssArticle.findMany({
+        where: {
+          OR: [{ feedId }, { sourceFeedIds: { has: feedId } }],
         },
-      ],
-    });
-
-    // Delete articles that have no more feed references (empty sourceFeedIds)
-    await prisma.rssArticle.deleteMany({
-      where: {
-        sourceFeedIds: {
-          isEmpty: true,
+        select: {
+          id: true,
+          feedId: true,
+          sourceFeedIds: true,
         },
-      },
-    });
+      });
 
-    // Finally, delete the feed itself
-    await prisma.rssFeed.delete({
-      where: { id: feedId },
+      for (const article of relatedArticles) {
+        const remainingSourceFeedIds = article.sourceFeedIds.filter(
+          (sourceFeedId: string) => sourceFeedId !== feedId,
+        );
+
+        if (remainingSourceFeedIds.length === 0) {
+          await tx.rssArticle.delete({ where: { id: article.id } });
+          continue;
+        }
+
+        const nextFeedId =
+          article.feedId === feedId ? remainingSourceFeedIds[0] : article.feedId;
+
+        await tx.rssArticle.update({
+          where: { id: article.id },
+          data: {
+            feedId: nextFeedId,
+            sourceFeedIds: remainingSourceFeedIds,
+          },
+        });
+      }
+
+      await tx.rssFeed.delete({
+        where: { id: feedId },
+      });
     });
 
     return { success: true };

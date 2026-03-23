@@ -43,6 +43,10 @@ export function handlePrismaError(
       return new Error(`${context}: Record not found`);
     case "P2003":
       return new Error(`${context}: Foreign key constraint failed`);
+    case "P2014":
+      return new Error(
+        `${context}: Related records prevent this operation. Remove or reassign dependencies first`,
+      );
     default:
       return new Error(`${context}: Database error (${error.code})`);
   }
