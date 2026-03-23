@@ -1,0 +1,114 @@
+"use server";
+
+import { openai } from "@ai-sdk/openai";
+import { Output, streamText } from "ai";
+import { checkIsProUser, getCurrentUser } from "@/lib/auth/helpers";
+import type { GeneratedNewsletter } from "@/lib/newsletter/newsletter-schema";
+import { NewsletterSchema } from "@/lib/newsletter/newsletter-schema";
+import {
+  buildArticleSummaries,
+  buildNewsletterPrompt,
+} from "@/lib/newsletter/prompt-builder";
+import { prepareFeedsAndArticles } from "@/lib/rss/feed-refresh";
+import { createNewsletter } from "./newsletter";
+import { getUserSettingsByUserId } from "./user-settings";
+
+// ============================================
+// NEWSLETTER GENERATION ACTIONS
+// ============================================
+
+/**
+ * Generates a newsletter with AI streaming
+ *
+ * This is the main function for newsletter generation. It:
+ * 1. Authenticates the user
+ * 2. Fetches user settings for customization
+ * 3. Prepares feeds and retrieves articles
+ * 4. Builds an AI prompt with all context
+ * 5. Streams the AI-generated newsletter in real-time
+ *
+ * @param params - Feed IDs, date range, and optional user instructions
+ * @returns Object with the stream and article count
+ */
+export async function generateNewsletterStream(params: {
+  feedIds: string[];
+  startDate: Date;
+  endDate: Date;
+  userInput?: string;
+}) {
+  // Get authenticated user from database
+  const user = await getCurrentUser();
+
+  // Get user's newsletter settings (tone, branding, etc.)
+  const settings = await getUserSettingsByUserId(user.id);
+
+  // Fetch and refresh articles from RSS feeds
+  const articles = await prepareFeedsAndArticles(params);
+
+  // Build the AI prompt with articles and settings
+  const articleSummaries = buildArticleSummaries(articles);
+  const prompt = buildNewsletterPrompt({
+    startDate: params.startDate,
+    endDate: params.endDate,
+    articleSummaries,
+    articleCount: articles.length,
+    userInput: params.userInput,
+    settings,
+  });
+
+  const result = streamText({
+    model: openai("gpt-4o"),
+    prompt,
+    output: Output.object({
+      schema: NewsletterSchema,
+    }),
+  });
+
+  return {
+    stream: result.partialOutputStream,
+    articlesAnalyzed: articles.length,
+  };
+}
+
+/**
+ * Saves a generated newsletter to the database
+ *
+ * Only Pro users can save newsletters to their history.
+ * This allows them to reference past newsletters and track their content.
+ *
+ * @param params - Newsletter data and generation parameters
+ * @returns Saved newsletter record
+ * @throws Error if user is not Pro or not authenticated
+ */
+export async function saveGeneratedNewsletter(params: {
+  newsletter: GeneratedNewsletter;
+  feedIds: string[];
+  startDate: Date;
+  endDate: Date;
+  userInput?: string;
+}) {
+  // Check if user has Pro plan (required for saving)
+  const isPro = await checkIsProUser();
+  if (!isPro) {
+    throw new Error("Pro plan required to save newsletters");
+  }
+
+  // Get authenticated user
+  const user = await getCurrentUser();
+
+  // Save newsletter to database
+  const savedNewsletter = await createNewsletter({
+    userId: user.id,
+    suggestedTitles: params.newsletter.suggestedTitles,
+    suggestedSubjectLines: params.newsletter.suggestedSubjectLines,
+    body: params.newsletter.body,
+    topAnnouncements: params.newsletter.topAnnouncements,
+    additionalInfo: params.newsletter.additionalInfo,
+    startDate: params.startDate,
+    endDate: params.endDate,
+    userInput: params.userInput,
+    feedsUsed: params.feedIds,
+  });
+
+  return savedNewsletter;
+}
