@@ -175,7 +175,7 @@ export function NewsletterDisplay({
                 {newsletter.body && (
                   <Badge
                     variant="outline"
-                    className="text-xs border-purple-600 text-purple-600"
+                    className="text-xs border-cyan-600 text-cyan-600"
                   >
                     {newsletter.body.split(/\s+/).filter(Boolean).length} words
                   </Badge>
@@ -326,7 +326,7 @@ function NewsletterSection({
             >
               <Badge
                 variant="outline"
-                className={`${compact ? "text-xs" : ""} border-purple-600 text-purple-600`}
+                className={`${compact ? "text-xs" : ""} border-cyan-600 text-cyan-600`}
               >
                 {index + 1}
               </Badge>

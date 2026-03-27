@@ -29,7 +29,7 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-950"
+      className="py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
@@ -52,18 +52,18 @@ export function HowItWorks() {
                 <div key={step.number} className="relative">
                   {/* Connector line */}
                   {index < steps.length - 1 && (
-                    <div className="absolute top-12 left-1/2 hidden h-0.5 w-full bg-linear-to-r from-blue-600 to-purple-600 lg:block" />
+                    <div className="absolute top-12 left-1/2 hidden h-0.5 w-full bg-linear-to-r from-indigo-700 to-cyan-600 lg:block" />
                   )}
 
                   <div className="relative flex flex-col items-center text-center">
                     {/* Number badge */}
-                    <div className="mb-4 flex size-24 items-center justify-center rounded-full bg-linear-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white shadow-lg">
+                    <div className="mb-4 flex size-24 items-center justify-center rounded-full bg-linear-to-br from-indigo-700 to-cyan-600 text-2xl font-bold text-white shadow-lg">
                       {step.number}
                     </div>
 
                     {/* Icon */}
-                    <div className="mb-4 flex size-16 items-center justify-center rounded-lg bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-800">
-                      <Icon className="size-8 text-blue-600" />
+                    <div className="mb-4 flex size-16 items-center justify-center rounded-lg border border-indigo-200/70 bg-white shadow-md dark:border-indigo-900/60 dark:bg-slate-900">
+                      <Icon className="size-8 text-indigo-600" />
                     </div>
 
                     {/* Content */}

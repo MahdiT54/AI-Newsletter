@@ -33,7 +33,7 @@ export async function RssFeedManager() {
   const feeds = (await getRssFeedsByUserId(user.id)) as RssFeed[];
 
   return (
-    <Card className="transition-all hover:shadow-lg overflow-hidden">
+    <Card className="lic-panel transition-all hover:shadow-lg overflow-hidden">
       <CardHeader>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="min-w-0 flex-1">
@@ -61,7 +61,7 @@ export async function RssFeedManager() {
               feedLimit={feedLimit}
               isPro={isPro}
               trigger={
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                <Button className="lic-button">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Your First Feed
                 </Button>
@@ -73,7 +73,7 @@ export async function RssFeedManager() {
             {feeds.map((feed) => (
               <div
                 key={feed.id}
-                className="border rounded-lg p-4 hover:bg-accent/50 hover:shadow-md transition-all overflow-hidden"
+                className="rounded-lg border border-indigo-200/70 p-4 transition-all hover:bg-accent/50 hover:shadow-md dark:border-indigo-900/60 overflow-hidden"
               >
                 <div className="flex items-start justify-between gap-2 sm:gap-4">
                   <div className="flex-1 min-w-0">
@@ -86,7 +86,7 @@ export async function RssFeedManager() {
                       href={feed.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 inline-flex items-center gap-1 mb-2 transition-colors max-w-full"
+                      className="inline-flex max-w-full items-center gap-1 mb-2 text-sm text-muted-foreground transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
                     >
                       <span className="truncate break-all">{feed.url}</span>
                       <ExternalLink className="h-3 w-3 shrink-0" />

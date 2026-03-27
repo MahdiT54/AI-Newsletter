@@ -16,7 +16,7 @@ export async function NewsletterGenerator() {
 
   if (feeds.length === 0) {
     return (
-      <Card className="transition-all hover:shadow-lg">
+      <Card className="lic-panel transition-all hover:shadow-lg">
         <CardHeader>
           <CardTitle className="text-2xl">Generate Newsletter</CardTitle>
           <CardDescription className="text-base">

@@ -71,7 +71,7 @@ export function NewsletterHistoryView({
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+        <div className="min-h-screen">
             <div className="container mx-auto py-12 px-6 lg:px-8 space-y-8">
                 {/* Header */}
                 <div className="flex items-center justify-between">
@@ -105,7 +105,7 @@ export function NewsletterHistoryView({
                 </div>
 
                 {/* Metadata Card */}
-                <Card className="transition-all hover:shadow-lg border-2 border-blue-600/20 dark:border-blue-500/20">
+                <Card className="lic-panel transition-all hover:shadow-lg border-2 border-indigo-600/20 dark:border-indigo-500/20">
                     <CardHeader>
                         <CardTitle className="text-xl">Newsletter Information</CardTitle>
                         <CardDescription className="text-base">
@@ -122,7 +122,7 @@ export function NewsletterHistoryView({
                     <CardContent>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
                             <div className="flex items-start gap-3">
-                                <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                     <Calendar className="h-4 w-4" />
                                 </div>
                                 <div>
@@ -147,7 +147,7 @@ export function NewsletterHistoryView({
                             </div>
 
                             <div className="flex items-start gap-3">
-                                <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                     <FileText className="h-4 w-4" />
                                 </div>
                                 <div>
@@ -161,7 +161,7 @@ export function NewsletterHistoryView({
 
                             {newsletter.userInput && (
                                 <div className="flex items-start gap-3">
-                                    <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                    <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                         <Clock className="h-4 w-4" />
                                     </div>
                                     <div>

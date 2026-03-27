@@ -82,7 +82,7 @@ export function NewsletterHistoryList({
                 </CardHeader>
                 <CardContent>
                     <Link href="/dashboard">
-                        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                        <Button className="lic-button">
                             Go to Dashboard to generate a newsletter →
                         </Button>
                     </Link>
@@ -107,7 +107,7 @@ export function NewsletterHistoryList({
                                 <CardHeader>
                                     <div className="flex items-start justify-between gap-2">
                                         <div className="flex-1 min-w-0">
-                                            <CardTitle className="text-lg line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                                            <CardTitle className="text-lg line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-indigo-700 group-hover:to-cyan-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
                                                 {title}
                                             </CardTitle>
                                         </div>
@@ -136,7 +136,7 @@ export function NewsletterHistoryList({
                                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                         <Badge
                                             variant="outline"
-                                            className="text-xs border-purple-600 text-purple-600"
+                                            className="text-xs border-cyan-600 text-cyan-600"
                                         >
                                             {new Date(newsletter.startDate).toLocaleDateString(
                                                 "en-US",

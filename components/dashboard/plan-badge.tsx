@@ -27,7 +27,7 @@ export function PlanBadge() {
   return (
     <Link href="/dashboard/pricing">
       {isPro ? (
-        <Badge className="gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 transition-all cursor-pointer">
+        <Badge className="gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-700 to-cyan-600 hover:from-indigo-800 hover:to-cyan-700 text-white border-0 transition-all cursor-pointer">
           <Crown className="h-3.5 w-3.5" />
           <span className="font-semibold">Pro</span>
         </Badge>

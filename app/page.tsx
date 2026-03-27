@@ -7,7 +7,7 @@ import { Pricing } from "@/components/landing/pricing";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black">
+    <main className="min-h-screen lic-bg">
       <Hero />
       <Features />
       <HowItWorks />

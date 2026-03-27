@@ -180,9 +180,9 @@ export function NewsletterGenerationPage() {
   // If no params, show error
   if (!params) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+      <div className="min-h-screen">
         <div className="container mx-auto py-12 px-6 lg:px-8">
-          <Card className="transition-all hover:shadow-lg">
+          <Card className="lic-panel transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">
                 Invalid Generation Request
@@ -194,7 +194,7 @@ export function NewsletterGenerationPage() {
             <CardContent>
               <Button
                 onClick={handleBackToDashboard}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                className="lic-button"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
@@ -207,7 +207,7 @@ export function NewsletterGenerationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+    <div className="min-h-screen">
       <div className="container mx-auto py-12 px-6 lg:px-8 space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -231,7 +231,7 @@ export function NewsletterGenerationPage() {
           </div>
           {isLoading && (
             <div className="flex items-center gap-2 text-base">
-              <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white animate-pulse">
+              <div className="inline-flex size-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white animate-pulse">
                 <Sparkles className="h-4 w-4" />
               </div>
               <span className="font-medium">Generating newsletter...</span>
@@ -259,7 +259,7 @@ export function NewsletterGenerationPage() {
 
         {/* If generation hasn't started yet */}
         {!isLoading && !newsletter?.body && (
-          <Card className="transition-all hover:shadow-lg">
+          <Card className="lic-panel transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Preparing to Generate</CardTitle>
               <CardDescription className="text-base">

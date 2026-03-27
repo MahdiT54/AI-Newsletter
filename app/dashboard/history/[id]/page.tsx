@@ -22,9 +22,9 @@ export default async function NewsletterDetailPage({ params }: PageProps) {
 
   if (!userId) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+      <div className="min-h-screen">
         <div className="container mx-auto py-12 px-6 lg:px-8">
-          <Card className="transition-all hover:shadow-lg">
+          <Card className="lic-panel transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">
                 Authentication Required
@@ -43,9 +43,9 @@ export default async function NewsletterDetailPage({ params }: PageProps) {
 
   if (!isPro) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+      <div className="min-h-screen">
         <div className="container mx-auto py-12 px-6 lg:px-8">
-          <Card className="transition-all hover:shadow-lg">
+          <Card className="lic-panel transition-all hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Pro Plan Required</CardTitle>
               <CardDescription className="text-base">

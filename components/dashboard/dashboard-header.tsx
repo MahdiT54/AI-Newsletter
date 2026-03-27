@@ -35,19 +35,18 @@ export function DashboardHeader() {
   ];
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <header className="border-b border-indigo-200/70 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 dark:border-indigo-900/60">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo/Brand */}
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <span className="text-xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                FeedStack
+              <span className="text-xl font-bold lic-highlight">
+                FeedPilot
               </span>
             </Link>
 
             {/* Navigation */}
-            {/* start with tmp class nav *** */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
                 const isActive =
@@ -66,7 +65,7 @@ export function DashboardHeader() {
                       className={cn(
                         "gap-2 transition-all",
                         isActive &&
-                          "bg-linear-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700",
+                          "bg-linear-to-r from-indigo-700 to-cyan-600 text-white font-medium hover:from-indigo-800 hover:to-cyan-700",
                       )}
                     >
                       <Icon className="h-4 w-4" />
@@ -109,7 +108,7 @@ export function DashboardHeader() {
                   className={cn(
                     "gap-2 transition-all",
                     isActive &&
-                      "bg-linear-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700",
+                      "bg-linear-to-r from-indigo-700 to-cyan-600 text-white font-medium hover:from-indigo-800 hover:to-cyan-700",
                   )}
                 >
                   <Icon className="h-4 w-4" />

@@ -18,9 +18,9 @@ export default async function HistoryPage() {
 
     if (!userId) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+            <div className="min-h-screen">
                 <div className="container mx-auto py-12 px-6 lg:px-8">
-                    <Card className="transition-all hover:shadow-lg">
+                    <Card className="lic-panel transition-all hover:shadow-lg">
                         <CardHeader>
                             <CardTitle className="text-2xl">
                                 Authentication Required
@@ -40,7 +40,7 @@ export default async function HistoryPage() {
     const newsletters = isPro ? await getNewslettersByUserId(user.id) : [];
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+        <div className="min-h-screen">
             <div className="container mx-auto py-12 px-6 lg:px-8 space-y-12">
                 {/* Header */}
                 <PageHeader
@@ -51,14 +51,14 @@ export default async function HistoryPage() {
 
                 {/* Free User Upgrade Prompt */}
                 {!isPro && (
-                    <Card className="border-2 border-blue-600 dark:border-blue-500 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 transition-all hover:shadow-lg">
+                    <Card className="lic-panel border-2 border-indigo-600/70 bg-gradient-to-br from-indigo-50 to-cyan-50 transition-all hover:shadow-lg dark:border-indigo-500/70 dark:from-indigo-950/25 dark:to-cyan-950/25">
                         <CardHeader>
                             <div className="flex items-center gap-3">
-                                <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+                                <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-700 to-cyan-600 text-white">
                                     <Crown className="h-6 w-6" />
                                 </div>
                                 <div>
-                                    <CardTitle className="text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                    <CardTitle className="text-3xl lic-highlight">
                                         Upgrade to Pro
                                     </CardTitle>
                                     <CardDescription className="text-base mt-1">
@@ -75,7 +75,7 @@ export default async function HistoryPage() {
                                 </p>
                                 <ul className="space-y-3">
                                     <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                             <HistoryIcon className="h-3.5 w-3.5" />
                                         </div>
                                         <span className="text-foreground font-medium">
@@ -83,7 +83,7 @@ export default async function HistoryPage() {
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                             <HistoryIcon className="h-3.5 w-3.5" />
                                         </div>
                                         <span className="text-foreground font-medium">
@@ -91,7 +91,7 @@ export default async function HistoryPage() {
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                             <HistoryIcon className="h-3.5 w-3.5" />
                                         </div>
                                         <span className="text-foreground font-medium">
@@ -99,7 +99,7 @@ export default async function HistoryPage() {
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-blue-600 to-purple-600 text-white shrink-0 mt-0.5">
+                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
                                             <HistoryIcon className="h-3.5 w-3.5" />
                                         </div>
                                         <span className="text-foreground font-medium">

@@ -47,7 +47,7 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="py-24 sm:py-32 bg-white dark:bg-black">
+    <section id="features" className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -63,12 +63,9 @@ export function Features() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card
-                key={feature.title}
-                className="relative overflow-hidden transition-all hover:shadow-lg"
-              >
+              <Card key={feature.title} className="lic-panel relative overflow-hidden transition-all hover:shadow-lg">
                 <CardHeader>
-                  <div className="mb-4 inline-flex size-12 items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-purple-600 text-white">
+                  <div className="mb-4 inline-flex size-12 items-center justify-center rounded-lg bg-linear-to-br from-indigo-700 to-cyan-600 text-white">
                     <Icon className="size-6" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>

@@ -77,7 +77,7 @@ export function NewsletterForm({ feeds }: NewsletterFormProps) {
 
   return (
     <div className="space-y-6">
-      <Card className="transition-all hover:shadow-lg">
+      <Card className="lic-panel transition-all hover:shadow-lg">
         <CardHeader>
           <CardTitle className="text-2xl">Generate Newsletter</CardTitle>
           <CardDescription className="text-base">
@@ -105,7 +105,7 @@ export function NewsletterForm({ feeds }: NewsletterFormProps) {
                 </Button>
               )}
             </div>
-            <div className="border rounded-lg p-4 space-y-3 max-h-60 overflow-y-auto">
+            <div className="max-h-60 space-y-3 overflow-y-auto rounded-lg border border-indigo-200/70 p-4 dark:border-indigo-900/60">
               {feeds.map((feed) => (
                 <div key={feed.id} className="flex items-center space-x-2">
                   <Checkbox
@@ -151,7 +151,7 @@ export function NewsletterForm({ feeds }: NewsletterFormProps) {
           <Button
             onClick={handleGenerate}
             disabled={selectedFeeds.length === 0}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+            className="w-full lic-button"
             size="lg"
           >
             <Sparkles className="h-4 w-4 mr-2" />

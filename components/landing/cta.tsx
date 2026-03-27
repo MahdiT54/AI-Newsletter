@@ -3,7 +3,7 @@ import CTAButtons from "./buttons/CTAButtons";
 
 export function CTA() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-blue-600 to-purple-600 py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-linear-to-br from-indigo-800 via-blue-700 to-cyan-700 py-24 sm:py-32">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-size-[24px_24px]" />
 
