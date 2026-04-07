@@ -6,120 +6,120 @@ import { NewsletterHistoryList } from "@/components/dashboard/newsletter-history
 import { PageHeader } from "@/components/dashboard/page-header";
 import { PricingCards } from "@/components/dashboard/pricing-cards";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 
 export default async function HistoryPage() {
-    const { userId, has } = await auth();
+  const { userId, has } = await auth();
 
-    if (!userId) {
-        return (
-            <div className="min-h-screen">
-                <div className="container mx-auto py-12 px-6 lg:px-8">
-                    <Card className="lic-panel transition-all hover:shadow-lg">
-                        <CardHeader>
-                            <CardTitle className="text-2xl">
-                                Authentication Required
-                            </CardTitle>
-                            <CardDescription className="text-base">
-                                Please sign in to view your newsletter history.
-                            </CardDescription>
-                        </CardHeader>
-                    </Card>
-                </div>
-            </div>
-        );
-    }
-
-    const isPro = await has({ plan: "pro" });
-    const user = await upsertUserFromClerk(userId);
-    const newsletters = isPro ? await getNewslettersByUserId(user.id) : [];
-
+  if (!userId) {
     return (
-        <div className="min-h-screen">
-            <div className="container mx-auto py-12 px-6 lg:px-8 space-y-12">
-                {/* Header */}
-                <PageHeader
-                    icon={HistoryIcon}
-                    title="Newsletter History"
-                    description="View and manage your saved newsletters"
-                />
-
-                {/* Free User Upgrade Prompt */}
-                {!isPro && (
-                    <Card className="lic-panel border-2 border-indigo-600/70 bg-gradient-to-br from-indigo-50 to-cyan-50 transition-all hover:shadow-lg dark:border-indigo-500/70 dark:from-indigo-950/25 dark:to-cyan-950/25">
-                        <CardHeader>
-                            <div className="flex items-center gap-3">
-                                <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-700 to-cyan-600 text-white">
-                                    <Crown className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <CardTitle className="text-3xl lic-highlight">
-                                        Upgrade to Pro
-                                    </CardTitle>
-                                    <CardDescription className="text-base mt-1">
-                                        Save and access your newsletter history with a Pro plan
-                                    </CardDescription>
-                                </div>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="flex flex-col lg:flex-row gap-8 items-start">
-                            <div className="space-y-4 flex-1">
-                                <p className="text-base font-semibold text-gray-900 dark:text-white">
-                                    Pro users can save unlimited newsletters and access them
-                                    anytime from their history, including:
-                                </p>
-                                <ul className="space-y-3">
-                                    <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
-                                            <HistoryIcon className="h-3.5 w-3.5" />
-                                        </div>
-                                        <span className="text-foreground font-medium">
-                                            Unlimited newsletter storage and history access
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
-                                            <HistoryIcon className="h-3.5 w-3.5" />
-                                        </div>
-                                        <span className="text-foreground font-medium">
-                                            Search and filter through past newsletters
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
-                                            <HistoryIcon className="h-3.5 w-3.5" />
-                                        </div>
-                                        <span className="text-foreground font-medium">
-                                            Export and reuse successful newsletter templates
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
-                                            <HistoryIcon className="h-3.5 w-3.5" />
-                                        </div>
-                                        <span className="text-foreground font-medium">
-                                            Never lose a great newsletter again
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* Pricing Cards */}
-                            <div className="w-full lg:w-auto lg:flex-1">
-                                <PricingCards compact />
-                            </div>
-                        </CardContent>
-                    </Card>
-                )}
-
-                {/* Newsletter List */}
-                {isPro && <NewsletterHistoryList newsletters={newsletters} />}
-            </div>
+      <div className="min-h-screen">
+        <div className="container mx-auto py-12 px-6 lg:px-8">
+          <Card className="lic-panel transition-all hover:shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl">
+                Authentication Required
+              </CardTitle>
+              <CardDescription className="text-base">
+                Please sign in to view your newsletter history.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
+      </div>
     );
+  }
+
+  const isPro = await has({ plan: "pro" });
+  const user = await upsertUserFromClerk(userId);
+  const newsletters = isPro ? await getNewslettersByUserId(user.id) : [];
+
+  return (
+    <div className="min-h-screen">
+      <div className="container mx-auto py-12 px-6 lg:px-8 space-y-12">
+        {/* Header */}
+        <PageHeader
+          icon={HistoryIcon}
+          title="Newsletter History"
+          description="View and manage your saved newsletters"
+        />
+
+        {/* Free User Upgrade Prompt */}
+        {!isPro && (
+          <Card className="lic-panel border-2 border-indigo-600/70 bg-gradient-to-br from-indigo-50 to-cyan-50 transition-all hover:shadow-lg dark:border-indigo-500/70 dark:from-indigo-950/25 dark:to-cyan-950/25">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-700 to-cyan-600 text-white">
+                  <Crown className="h-6 w-6" />
+                </div>
+                <div>
+                  <CardTitle className="text-3xl lic-highlight">
+                    Upgrade to Pro
+                  </CardTitle>
+                  <CardDescription className="text-base mt-1">
+                    Save and access your newsletter history with a Pro plan
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="space-y-4 flex-1">
+                <p className="text-base font-semibold text-gray-900 dark:text-white">
+                  Pro users can save unlimited newsletters and access them
+                  anytime from their history, including:
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
+                      <HistoryIcon className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-foreground font-medium">
+                      Unlimited newsletter storage and history access
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
+                      <HistoryIcon className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-foreground font-medium">
+                      Search and filter through past newsletters
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
+                      <HistoryIcon className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-foreground font-medium">
+                      Export and reuse successful newsletter templates
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="inline-flex size-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-700 to-cyan-600 text-white shrink-0 mt-0.5">
+                      <HistoryIcon className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-foreground font-medium">
+                      Never lose a great newsletter again
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Pricing Cards */}
+              <div className="w-full lg:w-auto lg:flex-1">
+                <PricingCards compact />
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Newsletter List */}
+        {isPro && <NewsletterHistoryList newsletters={newsletters} />}
+      </div>
+    </div>
+  );
 }

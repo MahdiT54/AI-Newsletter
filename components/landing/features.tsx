@@ -63,7 +63,10 @@ export function Features() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="lic-panel relative overflow-hidden transition-all hover:shadow-lg">
+              <Card
+                key={feature.title}
+                className="lic-panel relative overflow-hidden transition-all hover:shadow-lg"
+              >
                 <CardHeader>
                   <div className="mb-4 inline-flex size-12 items-center justify-center rounded-lg bg-linear-to-br from-indigo-700 to-cyan-600 text-white">
                     <Icon className="size-6" />

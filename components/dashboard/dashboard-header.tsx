@@ -41,9 +41,7 @@ export function DashboardHeader() {
           {/* Logo/Brand */}
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <span className="text-xl font-bold lic-highlight">
-                FeedPilot
-              </span>
+              <span className="text-xl font-bold lic-highlight">FeedPilot</span>
             </Link>
 
             {/* Navigation */}

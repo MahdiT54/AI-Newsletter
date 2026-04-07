@@ -68,7 +68,9 @@ export async function deleteRssFeed(feedId: string) {
         }
 
         const nextFeedId =
-          article.feedId === feedId ? remainingSourceFeedIds[0] : article.feedId;
+          article.feedId === feedId
+            ? remainingSourceFeedIds[0]
+            : article.feedId;
 
         await tx.rssArticle.update({
           where: { id: article.id },

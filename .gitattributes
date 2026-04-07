@@ -1,0 +1,78 @@
+# Line endings: this file is the source of truth for how Git stores and checks out text.
+# Prefer LF in the index and working tree for all source; see docs/dev-setup.md.
+
+# Let Git detect text vs binary; normalize text to LF in the repository.
+* text=auto eol=lf
+
+# Explicit text (documents intent; matches common Next.js / TS monorepo files)
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.mts   text eol=lf
+*.cts   text eol=lf
+*.js    text eol=lf
+*.jsx   text eol=lf
+*.mjs   text eol=lf
+*.cjs   text eol=lf
+*.json  text eol=lf
+*.jsonc text eol=lf
+*.md    text eol=lf
+*.mdx   text eol=lf
+*.css   text eol=lf
+*.scss  text eol=lf
+*.sass  text eol=lf
+*.less  text eol=lf
+*.html  text eol=lf
+*.htm   text eol=lf
+*.svg   text eol=lf
+*.xml   text eol=lf
+*.txt   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.ini   text eol=lf
+*.cfg   text eol=lf
+*.prisma text eol=lf
+*.sql   text eol=lf
+*.sh    text eol=lf
+*.bash  text eol=lf
+*.zsh   text eol=lf
+
+# Config / dotfiles often without extension
+.gitattributes text eol=lf
+.gitignore     text eol=lf
+.editorconfig  text eol=lf
+Dockerfile     text eol=lf
+Dockerfile.*   text eol=lf
+
+# Windows-only scripts: CRLF is conventional for cmd/PowerShell
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary assets — do not apply text conversion
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
+*.tgz  binary
+*.7z   binary
+*.rar  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.eot   binary
+*.mp3  binary
+*.mp4  binary
+*.webm binary
+*.mov  binary
+*.wav  binary
+*.exe  binary
+*.dll  binary
+*.so   binary
+*.dylib binary
