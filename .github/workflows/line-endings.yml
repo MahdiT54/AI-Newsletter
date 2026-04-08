@@ -1,0 +1,15 @@
+name: Line endings
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify LF for tracked text files
+        run: node scripts/check-line-endings.mjs

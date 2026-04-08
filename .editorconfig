@@ -1,0 +1,39 @@
+# https://editorconfig.org
+# Keeps editors consistent with Biome (2 spaces) and repo LF policy.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}]
+indent_style = space
+indent_size = 2
+
+[*.{json,jsonc}]
+indent_style = space
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.{md,mdx}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+[*.css]
+indent_style = space
+indent_size = 2
+
+[*.prisma]
+indent_style = space
+indent_size = 2
+
+# Windows scripts may use CRLF on disk when checked out per .gitattributes
+[*.{bat,cmd,ps1}]
+end_of_line = crlf

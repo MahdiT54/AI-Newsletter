@@ -192,10 +192,7 @@ export function NewsletterGenerationPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button
-                onClick={handleBackToDashboard}
-                className="lic-button"
-              >
+              <Button onClick={handleBackToDashboard} className="lic-button">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
               </Button>

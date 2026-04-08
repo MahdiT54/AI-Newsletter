@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight, Rss, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import CTAButtons from "./buttons/CTAButtons";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -10,21 +11,26 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 ">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Badge */}
+          <Image
+            src="/feedpilotlogo.png"
+            alt="FeedPilot"
+            width={320}
+            height={72}
+            className="mx-auto mb-6 h-auto w-auto max-h-24 max-w-full sm:max-h-28"
+            priority
+          />
           <Badge
             variant="secondary"
             className="mb-6 px-4 py-1.5 border border-indigo-200/70 dark:border-indigo-900/60"
           >
             <Sparkles className="mr-2 size-4" />
-            FeedPilot - AI Newsletter Suite
+            AI Newsletter Suite
           </Badge>
 
           {/* Headline */}
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
             Generate Professional Newsletters in{" "}
-            <span className="lic-highlight">
-              Minutes, Not Hours
-            </span>
+            <span className="lic-highlight">Minutes, Not Hours</span>
           </h1>
 
           {/* Subheading */}
