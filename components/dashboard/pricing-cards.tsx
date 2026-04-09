@@ -31,6 +31,19 @@ export function PricingCards({ compact = false }: PricingCardsProps) {
               pricingTableCardFeePeriod: {
                 color: "white",
               },
+              /*
+               * "Upcoming" uses badge colorScheme primary (muted translucent grays).
+               * PricingTable is mounted by clerk-js, so globals.css often does not apply;
+               * these rules ship with the appearance config Clerk injects into the host.
+               */
+              badge: {
+                '&[data-color="primary"]': {
+                  backgroundColor: "#ffffff",
+                  color: "#4a1fb8",
+                  borderColor: "rgba(255, 255, 255, 0.55)",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.12)",
+                },
+              },
             },
           }}
           fallback={
