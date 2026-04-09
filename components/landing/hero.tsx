@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 ">
         <div className="mx-auto max-w-3xl text-center">
           <Image
-            src="/feedpilotlogo.png"
+            src="/feedpilotnoborder.png"
             alt="FeedPilot"
             width={320}
             height={72}
