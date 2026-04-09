@@ -1,5 +1,4 @@
 import { ArrowDown, ArrowRight, Rss, Sparkles } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import CTAButtons from "./buttons/CTAButtons";
 import Image from "next/image";
 
@@ -19,13 +18,19 @@ export default function Hero() {
             className="mx-auto mb-6 h-auto w-auto max-h-24 max-w-full sm:max-h-28"
             priority
           />
-          <Badge
-            variant="secondary"
-            className="mb-6 px-4 py-1.5 border border-indigo-200/70 dark:border-indigo-900/60"
-          >
-            <Sparkles className="mr-2 size-4" />
-            AI Newsletter Suite
-          </Badge>
+          <div className="mb-6 flex items-center justify-center gap-4">
+            <span
+              className="h-px w-10 shrink-0 bg-linear-to-r from-transparent to-border sm:w-14"
+              aria-hidden
+            />
+            <p className="text-sm font-medium tracking-tight text-muted-foreground">
+              AI Newsletter Suite
+            </p>
+            <span
+              className="h-px w-10 shrink-0 bg-linear-to-l from-transparent to-border sm:w-14"
+              aria-hidden
+            />
+          </div>
 
           {/* Headline */}
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
