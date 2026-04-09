@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { PlanBadge } from "@/components/dashboard/plan-badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function DashboardHeader() {
   const pathname = usePathname();
@@ -40,8 +41,8 @@ export function DashboardHeader() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo/Brand */}
           <div className="flex items-center gap-8">
-            <Link href="/dashboard" className="flex items-center gap-2">
-              <span className="text-xl font-bold lic-highlight">FeedPilot</span>
+            <Link href="/" className="flex items-center gap-2">
+              <Image src="/feedpilotnoborder.png" alt="FeedPilot" width={120} height={32} />
             </Link>
 
             {/* Navigation */}

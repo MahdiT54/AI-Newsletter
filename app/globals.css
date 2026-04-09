@@ -149,3 +149,15 @@
 .cl-pricingTableCardPeriodToggle span {
   color: white;
 }
+
+/*
+ * PricingTable is mounted via clerk-js; badge overrides belong in PricingTable `appearance`
+ * (see components/dashboard/pricing-cards.tsx). Kept here only if a future Clerk build
+ * renders pricing in-document with cl-* classes.
+ */
+.cl-pricingTableCardHeader .cl-badge[data-color="primary"] {
+  background-color: #fff !important;
+  color: #4a1fb8 !important;
+  border-color: rgb(255 255 255 / 55%) !important;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+}
