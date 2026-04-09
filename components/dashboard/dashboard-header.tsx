@@ -89,7 +89,7 @@ export function DashboardHeader() {
         </div>
 
         {/* Mobile Navigation */}
-        <nav className="md:hidden flex items-center gap-1 pb-3">
+        <nav className="md:hidden flex flex-wrap items-center gap-1 pb-3">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href ||
