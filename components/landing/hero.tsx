@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight, Rss, Sparkles } from "lucide-react";
+import { FeedPilotLogo } from "@/components/feedpilot-logo";
 import CTAButtons from "./buttons/CTAButtons";
-import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -10,14 +10,7 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 ">
         <div className="mx-auto max-w-3xl text-center">
-          <Image
-            src="/feedpilotnoborder.png"
-            alt="FeedPilot"
-            width={320}
-            height={72}
-            className="mx-auto mb-6 h-auto w-auto max-h-24 max-w-full sm:max-h-28"
-            priority
-          />
+          <FeedPilotLogo variant="hero" priority />
           <div className="mb-6 flex items-center justify-center gap-4">
             <span
               className="h-px w-10 shrink-0 bg-linear-to-r from-transparent to-border sm:w-14"

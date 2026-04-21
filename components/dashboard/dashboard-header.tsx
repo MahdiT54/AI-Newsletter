@@ -5,9 +5,10 @@ import { History, Home, LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PlanBadge } from "@/components/dashboard/plan-badge";
+import { FeedPilotLogo } from "@/components/feedpilot-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
 export function DashboardHeader() {
   const pathname = usePathname();
@@ -42,7 +43,7 @@ export function DashboardHeader() {
           {/* Logo/Brand */}
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/feedpilotnoborder.png" alt="FeedPilot" width={120} height={32} />
+              <FeedPilotLogo variant="header" />
             </Link>
 
             {/* Navigation */}
@@ -78,6 +79,7 @@ export function DashboardHeader() {
 
           {/* Right side actions */}
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <PlanBadge />
             <SignOutButton>
               <Button variant="outline" size="sm" className="gap-2">
