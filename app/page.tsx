@@ -4,6 +4,7 @@ import { Features } from "@/components/landing/features";
 import Hero from "@/components/landing/hero";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Pricing } from "@/components/landing/pricing";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   return (
@@ -12,11 +13,12 @@ export default function Home() {
       <Features />
       <HowItWorks />
 
-      <Show when="signed-in">
-        <div className="fixed top-4 right-4">
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <ThemeToggle />
+        <Show when="signed-in">
           <UserButton />
-        </div>
-      </Show>
+        </Show>
+      </div>
 
       <Pricing />
       <CTA />
