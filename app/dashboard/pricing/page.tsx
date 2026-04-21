@@ -53,7 +53,7 @@ export default async function PricingPage() {
                     Thank you for being a Pro member!
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Your support helps us continue to improve Newsletter AI and
+                    Your support helps us continue to improve FeedPilot AI and
                     provide the best experience possible.
                   </p>
                 </div>
