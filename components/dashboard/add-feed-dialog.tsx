@@ -29,7 +29,7 @@ interface AddFeedDialogProps {
 
 export function AddFeedDialog({
   currentFeedCount,
-  feedLimit,
+  feedLimit, 
   isPro,
   trigger,
 }: AddFeedDialogProps) {

@@ -1,6 +1,9 @@
 "use server";
 
-import { wrapDatabaseOperation } from "@/lib/database/error-handler";
+import {
+  isPrismaError,
+  wrapDatabaseOperation,
+} from "@/lib/database/error-handler";
 import { prisma } from "@/lib/prisma";
 
 // ============================================
@@ -26,7 +29,9 @@ export async function getUserByClerkId(clerkUserId: string) {
  * Updates the timestamp when user already exists (tracks last activity)
  *
  * Note: Uses findUnique + create pattern instead of upsert to avoid transactions
- * (MongoDB Atlas free tier M0 doesn't support transactions)
+ * (MongoDB Atlas free tier M0 doesn't support transactions). On create races
+ * (e.g. parallel dashboard server components), catches P2002 and returns the
+ * existing user.
  *
  * @param clerkUserId - The Clerk authentication ID
  * @returns User record (either created or existing)
@@ -49,10 +54,23 @@ export async function upsertUserFromClerk(clerkUserId: string) {
     }
 
     // Create new user if doesn't exist
-    return await prisma.user.create({
-      data: {
-        clerkUserId,
-      },
-    });
+    try {
+      return await prisma.user.create({
+        data: {
+          clerkUserId,
+        },
+      });
+    } catch (error) {
+      // Parallel callers both tried to create the same user
+      if (isPrismaError(error) && error.code === "P2002") {
+        return await prisma.user.update({
+          where: { clerkUserId },
+          data: {
+            updatedAt: new Date(),
+          },
+        });
+      }
+      throw error;
+    }
   }, "upsert user");
 }

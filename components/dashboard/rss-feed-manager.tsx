@@ -25,9 +25,9 @@ interface RssFeed {
 }
 
 export async function RssFeedManager() {
-  const { userId, has } = await auth();
+  const { userId, has } = await auth(); // auth() returns the user id and the has() function checks if the user has a pro plan
   const isPro = await has({ plan: "pro" });
-  const feedLimit = isPro ? Infinity : 3;
+  const feedLimit = isPro ? Infinity : 3; // 
 
   const user = await upsertUserFromClerk(userId!);
   const feeds = (await getRssFeedsByUserId(user.id)) as RssFeed[];

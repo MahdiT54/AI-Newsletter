@@ -28,7 +28,7 @@ model UserSettings {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @unique @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+// "cascade" means if the user is deleted, all the user settings will be deleted
   // Basic Settings
   newsletterName String?
   description    String?
@@ -51,6 +51,8 @@ model UserSettings {
   updatedAt DateTime @updatedAt
 }
 
+
+// RSS Feed model stores RSS feeds with all the RSS feed information like title, description, link, image url, language, last fetched, articles, created at, updated at
 model RssFeed {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
   userId      String       @db.ObjectId
@@ -115,4 +117,5 @@ model Newsletter {
   @@index([userId])
   @@index([userId, createdAt])
   @@index([createdAt])
+  // makes lookups faster^ prep table for querying
 } 
