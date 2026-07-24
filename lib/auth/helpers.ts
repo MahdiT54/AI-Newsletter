@@ -13,6 +13,13 @@ import { getUserByClerkId } from "@/actions/user";
  * @throws Error if user is not authenticated or not found in database
  * @returns The user record from the database
  */
+// Example console log of `await auth()`:
+// {
+//   userId: "user_12345abcde",
+//   sessionId: "sess_67890vwxyz",
+//   has: async (args) => { /* function to check entitlements */ },
+//   // May include other properties like orgId, roles, etc.
+// }
 export async function getCurrentUser() {
   const { userId } = await auth();
 

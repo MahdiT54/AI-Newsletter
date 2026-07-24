@@ -18,7 +18,7 @@ import { prisma } from "@/lib/prisma";
  */
 export async function getUserByClerkId(clerkUserId: string) {
   return wrapDatabaseOperation(async () => {
-    return await prisma.user.findUnique({
+    return await prisma.user.findUnique({ // run a query in our db
       where: { clerkUserId },
     });
   }, "fetch user by Clerk ID");

@@ -1,5 +1,5 @@
-import Parser from "rss-parser";
 import type { ArticleData, FeedMetadata } from "./types";
+import Parser from "rss-parser";
 
 // Re-export types for convenience
 export type { ArticleData, FeedMetadata };

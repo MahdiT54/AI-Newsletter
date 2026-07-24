@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client";
 
 // ============================================
-// COMMON PRISMA QUERY PATTERNS
+// COMMON PRISMA QUERY PATTERNS/fragments
 // ============================================
 
 /**
@@ -28,7 +28,7 @@ export const ARTICLE_WITH_FEED_INCLUDE = {
       url: true,
     },
   },
-} as const satisfies Prisma.RssArticleInclude;
+} as const satisfies Prisma.RssArticleInclude; // prisma type checks
 
 /**
  * Include pattern for newsletter with user information

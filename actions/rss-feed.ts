@@ -41,49 +41,69 @@ export async function updateFeedLastFetched(feedId: string) {
 }
 
 /**
- * Permanently deletes an RSS feed and cleans up articles not referenced by other feeds
+ * Permanently deletes an RSS feed and cleans up articles not referenced by other feeds.
+ *
+ * Avoids interactive $transaction — MongoDB Atlas free tier + Prisma's 5s default
+ * timeout cause P2028 when many articles are updated sequentially inside a txn.
  */
 export async function deleteRssFeed(feedId: string) {
   return wrapDatabaseOperation(async () => {
-    await prisma.$transaction(async (tx) => {
-      const relatedArticles = await tx.rssArticle.findMany({
-        where: {
-          OR: [{ feedId }, { sourceFeedIds: { has: feedId } }],
-        },
-        select: {
-          id: true,
-          feedId: true,
-          sourceFeedIds: true,
-        },
-      });
+    const relatedArticles = await prisma.rssArticle.findMany({
+      where: {
+        OR: [{ feedId }, { sourceFeedIds: { has: feedId } }],
+      },
+      select: {
+        id: true,
+        feedId: true,
+        sourceFeedIds: true,
+      },
+    });
 
-      for (const article of relatedArticles) {
-        const remainingSourceFeedIds = article.sourceFeedIds.filter(
-          (sourceFeedId: string) => sourceFeedId !== feedId,
-        );
+    const articleIdsToDelete: string[] = [];
+    const articlesToReassign: Array<{
+      id: string;
+      feedId: string;
+      sourceFeedIds: string[];
+    }> = [];
 
-        if (remainingSourceFeedIds.length === 0) {
-          await tx.rssArticle.delete({ where: { id: article.id } });
-          continue;
-        }
+    for (const article of relatedArticles) {
+      const remainingSourceFeedIds = article.sourceFeedIds.filter(
+        (sourceFeedId) => sourceFeedId !== feedId,
+      );
 
-        const nextFeedId =
-          article.feedId === feedId
-            ? remainingSourceFeedIds[0]
-            : article.feedId;
-
-        await tx.rssArticle.update({
-          where: { id: article.id },
-          data: {
-            feedId: nextFeedId,
-            sourceFeedIds: remainingSourceFeedIds,
-          },
-        });
+      if (remainingSourceFeedIds.length === 0) {
+        articleIdsToDelete.push(article.id);
+        continue;
       }
 
-      await tx.rssFeed.delete({
-        where: { id: feedId },
+      articlesToReassign.push({
+        id: article.id,
+        feedId:
+          article.feedId === feedId
+            ? remainingSourceFeedIds[0]
+            : article.feedId,
+        sourceFeedIds: remainingSourceFeedIds,
       });
+    }
+
+    if (articleIdsToDelete.length > 0) {
+      await prisma.rssArticle.deleteMany({
+        where: { id: { in: articleIdsToDelete } },
+      });
+    }
+
+    for (const article of articlesToReassign) {
+      await prisma.rssArticle.update({
+        where: { id: article.id },
+        data: {
+          feedId: article.feedId,
+          sourceFeedIds: article.sourceFeedIds,
+        },
+      });
+    }
+
+    await prisma.rssFeed.delete({
+      where: { id: feedId },
     });
 
     return { success: true };

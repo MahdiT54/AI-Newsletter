@@ -29,7 +29,7 @@ interface AddFeedDialogProps {
 
 export function AddFeedDialog({
   currentFeedCount,
-  feedLimit, 
+  feedLimit,
   isPro,
   trigger,
 }: AddFeedDialogProps) {
@@ -50,6 +50,7 @@ export function AddFeedDialog({
 
       // Check feed limit
       if (currentFeedCount >= feedLimit) {
+        // 3 starter | infinity pro in rss-feed-manager.tsx
         toast.error(
           isPro
             ? "Feed limit reached"
@@ -62,7 +63,7 @@ export function AddFeedDialog({
         throw new Error("Not authenticated");
       }
 
-      const user = await upsertUserFromClerk(userId); //
+      const user = await upsertUserFromClerk(userId); // server actions
       const result = await validateAndAddFeed(user.id, newFeedUrl.trim()); // our server actions
 
       if (result.error) {

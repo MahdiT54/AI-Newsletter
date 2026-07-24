@@ -27,6 +27,7 @@ export async function validateAndAddFeed(userId: string, url: string) {
 
     // Create the feed in database
     const feed = await prisma.rssFeed.create({
+      // prisma object is imported from @/lib/prisma
       data: {
         userId,
         url,

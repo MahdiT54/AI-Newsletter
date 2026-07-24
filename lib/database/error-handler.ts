@@ -47,6 +47,10 @@ export function handlePrismaError(
       return new Error(
         `${context}: Related records prevent this operation. Remove or reassign dependencies first`,
       );
+    case "P2028":
+      return new Error(
+        `${context}: Database transaction timed out or closed`,
+      );
     default:
       return new Error(`${context}: Database error (${error.code})`);
   }
@@ -66,6 +70,7 @@ export function handleDatabaseError(error: unknown, operation: string): never {
   console.error(`Failed to ${operation}:`, error);
 
   if (isPrismaError(error)) {
+    console.error(`Prisma ${error.code} meta:`, error.meta);
     throw handlePrismaError(error, `Failed to ${operation}`);
   }
 
